@@ -1,15 +1,5 @@
-#This script automatizes the job of TAs who grade the programming task of students.
-#This scipt is only to run the python programs.
-#All the test cases should be defined in file in order as given below:
-#FileName + counter + format
-##eg input.txt input1.txt input2.txt and so on..
-#All the std output will documented in Outfile defined by variable $OUTFILE
-# Similarly Error message will be documented in error.err file.
-#
-
-
 echo -n "" > output.out #clear the contents of output.out file
-dataFolder=data #folder name where the sub-directories containing homework files for each student contains.
+dataFolder=data #folder name containing programs
 OUTFILE=output.out
 for dir in ./$dataFolder/*/
 do
@@ -19,8 +9,8 @@ do
     counter="1"
     NAME=testcase
     FORMAT=.txt
-    TestCaseFile="testcase.txt" # Name of file containing testcase
-    ProgramName="a1_p17.py"   #file name of the programe
+    TestCaseFile="testcase.txt" # name of file containing testcase
+    ProgramName="a1_p17.py"   # file name of the program
     ProgramFullName=`echo ./$dataFolder/$folder/$ProgramName`
     echo `echo PATH: $ProgramFullName`
     echo "________________________________________________________________________" >> $OUTFILE
@@ -31,7 +21,7 @@ do
     while [  -f "$TestCaseFile"  ]; do
         echo `echo $TestCaseFile :` >>$OUTFILE
         echo "|------------|" >>$OUTFILE
-        python3 $ProgramFullName < $TestCaseFile >> $OUTFILE 2> "error.err" #chane the python version here
+        python3 $ProgramFullName < $TestCaseFile >> $OUTFILE 2> "error.err" #change the python version here
         TestCaseFile=`echo $NAME$counter$FORMAT`
          echo $TestCaseFile
         ((counter++))
